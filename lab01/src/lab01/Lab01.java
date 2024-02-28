@@ -19,9 +19,9 @@ public class Lab01 {
         // TODO code application logic here
         System.out.println("Hello World");
 
-        String[] firstString = {"C", "C++", "C#", "Python", "Go", "Rust", "JavaScript", "PHP", "Swift", "Java"};
-        for (int iterator = 0; iterator < firstString.length; iterator++) {
-            System.out.println(firstString[iterator]);
+        String[] languages = {"C", "C++", "C#", "Python", "Go", "Rust", "JavaScript", "PHP", "Swift", "Java"};
+        for (int iterator = 0; iterator < languages.length; iterator++) {
+            System.out.println(languages[iterator]);
         }
 
         int n = (int) (Math.random() * 1_000_000);
@@ -38,11 +38,11 @@ public class Lab01 {
             n /= 10;
             if (result >= 10 && n == 0) {
                 n = result;
+                result = 0;
             }
         }
 
-        String INT_AS_STRING = Integer.toString(result);
-        System.out.println("Willy-nilly, this semester I will learn " + INT_AS_STRING);
+        System.out.println("Willy-nilly, this semester I will learn " + languages[result]);
     }
 
 }
