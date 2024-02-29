@@ -4,6 +4,7 @@ public class Homework {
 
     public static void main(String[] args) {
         long t1 = System.currentTimeMillis();
+
         int a = Integer.parseInt(args[0]);
         int b = Integer.parseInt(args[1]);
         int k = Integer.parseInt(args[2]);
@@ -28,6 +29,7 @@ public class Homework {
         }
 
         long t2 = System.currentTimeMillis();
+        
         System.out.println(ar);
         System.out.println("The Homework class runs in " + (t2 - t1) + " miliseconds!");
     }
