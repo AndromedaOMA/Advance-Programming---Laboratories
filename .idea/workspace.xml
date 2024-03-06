@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c4986d6a-9ab5-40eb-bf81-2b10792677d1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab01/build.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab01/manifest.mf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab01/nbproject/build-impl.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab01/nbproject/genfiles.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab01/nbproject/project.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab01/nbproject/project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab01/src/lab01/Homework.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab01/src/lab01/Lab01.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab01/src/Bonus.class" beforeDir="false" afterPath="$PROJECT_DIR$/Lab01/src/Bonus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab01/src/Bonus.java" beforeDir="false" afterPath="$PROJECT_DIR$/Lab01/src/Bonus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab01/src/Homework.class" beforeDir="false" afterPath="$PROJECT_DIR$/Lab01/src/Homework.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab01/src/Homework.java" beforeDir="false" afterPath="$PROJECT_DIR$/Lab01/src/Homework.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,15 +26,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Windows_Folders/FACULTATE/Cursuri an II/Sem II/Advance-Programming---Laboratories&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/Windows_Folders/FACULTATE/Cursuri an II/Sem II/Advance-Programming---Laboratories/Lab02"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
