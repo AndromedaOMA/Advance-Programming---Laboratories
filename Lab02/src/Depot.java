@@ -3,28 +3,36 @@ public class Depot {
     private Vehicle[] vehicles;
 
     public Depot(String name) {
-        this.name=name;
+        this.name = name;
     }
 
     public void setName(String name) {
-        this.name=name;
+        this.name = name;
     }
-
-//    public void setVehicles(Vehicle[] vehicles) {
-//        for ( int i=0;i<vehicles.length;i++)
-//                this.vehicles=vehicles[i];
-//    }
 
     public String getName() {
         return this.name;
     }
+
+    public void setVehicles(Vehicle ... vehicles) {
+    this.vehicles=vehicles;
+    for(Vehicle v:vehicles)
+        v.setDepot(this);
+    }
+
+    public Vehicle[] getVehicles(){
+        return this.vehicles;
+    }
+
     @Override
-    public String toString(){
+    public String toString() {
         return "Depot(" + getName() + ")";
     }
 
-//    public void setVehicles(Vehicle ... vehicles) {
-//        this.vehicles = vehicles;
-//        for(Vehicles v : vehicles)
-//            v.setDepot(this);
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof Depot)) return false;
+        Depot other = (Depot) obj;
+        return name.equals(other.name);
+    }
 }
