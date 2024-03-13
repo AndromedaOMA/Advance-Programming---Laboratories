@@ -76,6 +76,8 @@ public class Problem {
                         clientToRemove = clientIterator;
                     }
                 }
+
+
             }
             if (minLoadVehicle != null && clientFound != null) {
                 vehicleAllocations.get(minLoadVehicle).add(clientFound);

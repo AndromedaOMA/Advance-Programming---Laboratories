@@ -50,12 +50,18 @@ public class Main {
 
         // Create a array of clients
         List<Client> clients = new ArrayList<>();
-        clients.add(new Client("Client A", LocalTime.of(10, 0), LocalTime.of(12, 6), ClientType.REGULAR));
-        clients.add(new Client("Client B", LocalTime.of(11, 1), LocalTime.of(11, 5), ClientType.PREMIUM));
-        clients.add(new Client("Client C", LocalTime.of(12, 2), LocalTime.of(10, 3), ClientType.REGULAR));
-        clients.add(new Client("Client D", LocalTime.of(13, 3), LocalTime.of(12, 4), ClientType.PREMIUM));
+        clients.add(new Client("Client A", LocalTime.of(10, 0), LocalTime.of(12, 16), ClientType.REGULAR));
+        clients.add(new Client("Client B", LocalTime.of(11, 14), LocalTime.of(11, 25), ClientType.PREMIUM));
+        clients.add(new Client("Client C", LocalTime.of(10, 26), LocalTime.of(11, 30), ClientType.REGULAR));
+        clients.add(new Client("Client D", LocalTime.of(10, 32), LocalTime.of(12, 20), ClientType.PREMIUM));
 
         // Allocate clients to vehicles
         problem.allocateClients(clients);
     }
+
+//    class PersonComparator implements java.util.Comparator<Client> {
+//        @Override
+//        public int compare(Client a, Client b) {
+//            return a.getMinTime() - b.getMinTime();
+//        }
 }
