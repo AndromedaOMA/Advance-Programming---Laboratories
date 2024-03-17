@@ -52,7 +52,7 @@ public class Main {
         List<Client> clients = new ArrayList<>();
         clients.add(new Client("Client A", LocalTime.of(10, 0), LocalTime.of(12, 16), ClientType.REGULAR));
         clients.add(new Client("Client B", LocalTime.of(11, 14), LocalTime.of(11, 25), ClientType.PREMIUM));
-        clients.add(new Client("Client C", LocalTime.of(10, 26), LocalTime.of(11, 30), ClientType.REGULAR));
+        clients.add(new Client("Client C", LocalTime.of(9, 26), LocalTime.of(11, 30), ClientType.REGULAR));
         clients.add(new Client("Client D", LocalTime.of(10, 32), LocalTime.of(12, 20), ClientType.PREMIUM));
 
         // Allocate clients to vehicles

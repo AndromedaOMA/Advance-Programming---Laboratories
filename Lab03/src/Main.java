@@ -15,5 +15,10 @@ public class Main {
 
         // Start the trip
         trip.startTrip();
+
+        trip.displayVisitableAndNonPayableAttractions();
+
+        TravelPlan plan = new TravelPlan(trip.getAttractions());
+        plan.getThePerfectDay();
     }
 }
