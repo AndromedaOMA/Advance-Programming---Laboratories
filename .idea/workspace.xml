@@ -6,7 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c4986d6a-9ab5-40eb-bf81-2b10792677d1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab02/src/Problem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Lab02/src/Problem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab03/src/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/Lab03/src/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab03/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Lab03/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab03/src/TravelPlan.class" beforeDir="false" afterPath="$PROJECT_DIR$/Lab03/src/TravelPlan.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab03/src/TravelPlan.java" beforeDir="false" afterPath="$PROJECT_DIR$/Lab03/src/TravelPlan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab03/src/Trip.class" beforeDir="false" afterPath="$PROJECT_DIR$/Lab03/src/Trip.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab03/src/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/Lab03/src/Trip.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,9 +36,20 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Windows_Folders/FACULTATE/Cursuri an II/Sem II/Advance-Programming---Laboratories/Lab02&quot;
+    &quot;last_opened_file_path&quot;: &quot;D:/Windows_Folders/FACULTATE/Cursuri an II/Sem II/Advance-Programming---Laboratories&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
 }</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

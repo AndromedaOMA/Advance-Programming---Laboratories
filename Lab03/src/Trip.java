@@ -7,10 +7,10 @@ import java.util.List;
 
 class Trip {
     private final String cityName;
-    private final String period;
+    private final int period;
     private final List<Visitable> attractions;
 
-    public Trip(String cityName, String period) {
+    public Trip(String cityName, int period) {
         this.cityName = cityName;
         this.period = period;
         this.attractions = new ArrayList<>();
@@ -18,6 +18,10 @@ class Trip {
 
     public void addAttraction(Visitable attraction) {
         attractions.add(attraction);
+    }
+
+    public int getPeriod(){
+        return this.period;
     }
 
     public void startTrip() {
