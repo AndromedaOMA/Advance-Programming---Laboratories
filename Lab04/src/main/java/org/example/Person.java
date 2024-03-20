@@ -4,6 +4,7 @@ public class Person {
     private boolean isPassenger;
     private boolean isDriver;
     private String name;
+    private String destination;
     private int age;
 
     public Person(String var1, int var2, boolean var3, boolean var4) {
@@ -45,6 +46,7 @@ public class Person {
         this.age = var1;
     }
 
+    @Override
     public String toString() {
         String var10000;
         if (this.getIsDriver()) {
