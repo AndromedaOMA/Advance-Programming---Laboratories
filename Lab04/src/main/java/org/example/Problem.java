@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Problem {
-    List<String> listOfDestinations = new ArrayList<>();
+    List<String> listOfDriversDestinations = new ArrayList<>();
     Map<String, List<Person>> mapOfPersonsAndDestinations = new HashMap<>();
     LinkedList<Person> listOfDrivers;
     Person[] randomGroupOfPersons;
@@ -12,16 +12,16 @@ public class Problem {
     public Problem(LinkedList<Person> listOfDrivers, Person[] randomGroupOfPersons) {
         this.listOfDrivers=listOfDrivers;
         this.randomGroupOfPersons=randomGroupOfPersons;
-        this.listOfDestinations=computeListOfAllDestinations();
+        this.listOfDriversDestinations=computeListOfAllDestinations();
         this.mapOfPersonsAndDestinations=computeListOfAllPersonsAndDestinations();
     }
 
     public List<String> getListOfDestinations() {
-        return listOfDestinations;
+        return listOfDriversDestinations;
     }
 
     public void setListOfDestinations(List<String> listOfDestinations) {
-        this.listOfDestinations = listOfDestinations;
+        this.listOfDriversDestinations = listOfDestinations;
     }
 
     public Map<String, List<Person>> getMapOfPersonsAndDestinations() {
