@@ -17,18 +17,36 @@ public class Main {
         }
 
         LinkedList<Person> drivers = Stream.of(randomGroupOfPersons)
-                .filter(Person::getIsDriver)
-                .sorted(Comparator.comparingInt(Person::getAge))
+                .filter(Person::isDriver)
+                .sorted(Comparator.comparing(Person::getAge))
                 .collect(Collectors.toCollection(LinkedList::new));
-
-        TreeSet<Person> passengers = Stream.of(randomGroupOfPersons)
-                .filter(Person::getIsPassenger)
-                .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Person::getName))));
 
         System.out.println("\nDrivers sorted by age:");
         drivers.forEach(System.out::println);
 
+        TreeSet<Person> passengers = Stream.of(randomGroupOfPersons)
+                .filter(Person::isPassenger)
+                .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Person::getName))));
+
         System.out.println("\nPassengers sorted by name:");
         passengers.forEach(System.out::println);
+        System.out.println();
+
+
+        Problem problem = new Problem(drivers, randomGroupOfPersons);
+
+        problem.computeListOfAllDestinations();
+        System.out.println("Here we got the list of destinations: \n" + problem.getListOfDestinations());
+
+        System.out.println();
+
+        var listOfDestinations = problem.computeListOfAllPersonsAndDestinations();
+        listOfDestinations.forEach((destination,people) -> {
+            System.out.println("Destination: " + destination);
+            System.out.println("Interested people: " + people.stream()
+                    .map(Person::getName)
+                    .collect(Collectors.joining(", ")));
+            System.out.println("----------------------------------");
+        });
     }
 }

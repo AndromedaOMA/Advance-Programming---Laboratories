@@ -7,35 +7,20 @@ import java.util.stream.Stream;
 public class Generator {
     public static Person[] generateRandomListOfPersons(int minLimit, int maxLimit) {
         var names = new String[]{"Marius", "Alexandru", "Olaru", "Codrin", "Andrei", "Sandu"};
+        var destinations = new String[]{"Piatra Neamt", "Bucuresti", "Iasi", "Oradea", "Bacau", "Timisoara"};
         var rand = new Random();
         int numberOfPersons = rand.nextInt(maxLimit - minLimit + 1) + minLimit;
 
-//        String currentName = name[rand.nextInt(name.length)];
-//        boolean isDriver = rand.nextBoolean();
-//        int currentAge = rand.nextInt(50) + 18;
-//        var groupOfPersons = IntStream.rangeClosed(0, numberOfPersons)
-//                .mapToObj(i -> new Person(name[rand.nextInt(name.length)],
-//                        rand.nextInt(50) + 18,
-//                        rand.nextBoolean(),
-//                        !rand.nextBoolean())).toArray(Person[]::new);
-
-
-        Person[] groupOfPersons = Stream.generate(() ->
-                        new Person(names[rand.nextInt(names.length)],
-                                rand.nextInt(50) + 18,
-                                rand.nextBoolean(),
-                                !rand.nextBoolean()))
-                .limit(numberOfPersons)
-                .toArray(Person[]::new);
-
-//        var groupOfPersons = new Person[numberOfPersons];
-//        for (int index = 0; index < numberOfPersons; index++) {
-//            String currentName = name[rand.nextInt(name.length)];
-//            boolean isDriver = rand.nextBoolean();
-//            int currentAge = rand.nextInt(50) + 18;
-//            groupOfPersons[index] = new Person(currentName, currentAge, isDriver, !isDriver);
-//        }
-
-        return groupOfPersons;
+        return Stream.generate(() -> {
+            var name = names[rand.nextInt(names.length)];
+            var age = rand.nextInt(30) + 18;
+            var destination = destinations[rand.nextInt(destinations.length)];
+            boolean isDriver = rand.nextBoolean();
+            if (isDriver) {
+                return new Driver(name, age, destination);
+            } else {
+                return new Passenger(name, age, destination);
+            }
+        }).limit(numberOfPersons).toArray(Person[]::new);
     }
 }

@@ -1,7 +1,9 @@
 package org.example;
 
 public class Passenger extends Person {
-    public Passenger(String var1, int var2, boolean var3, boolean var4) {
-        super(var1, var2, var3, var4);
+    public Passenger(String name, int age, String destination) {
+        this.setName(name);
+        this.setAge(age);
+        this.setDestination(destination);
     }
 }
