@@ -56,6 +56,7 @@ public class Main {
         });
 
         //Problem solver
+        boolean ok=false;
         if (drivers.isEmpty()) {
             System.out.println("There are no drivers!");
         } else {
@@ -70,6 +71,8 @@ public class Main {
                 for (Person currentDriver : listOfDrivers) {
                     if (!listOfPassengers.isEmpty()) {
                         System.out.println(currentDriver.getName() + " drives " + listOfPassengers.get(index++).getName() + " at " + currentDestination);
+                    } else {
+                        System.out.println(currentDriver.getName() + " don't have any passengers to drive at " + currentDestination);
                     }
                 }
             });
