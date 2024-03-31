@@ -10,7 +10,7 @@ public class Repository {
         this.path = path;
     }
 
-    public void readFile() {
+    public void readFiles() {
         File directory = new File(this.path);
         if (!directory.exists() || !directory.isDirectory()) {
             System.out.println("Directory not found or is not a directory.");
@@ -24,6 +24,8 @@ public class Repository {
                     System.out.println("Person ID: " + file.getName());
                 }
             }
+        } else {
+            System.out.println("No file found...");
         }
     }
 }
