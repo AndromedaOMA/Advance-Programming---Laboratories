@@ -10,32 +10,28 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.TilePane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
-
-import java.awt.*;
 
 //command: mvn clean javafx:run
 
 public class GridGame extends Application {
 
-    public static boolean isNumeric(String string) {
-        int intValue;
+    // Method to create the game board
+    private void createBoard(GridPane gridPane, int gridSize) {
+        gridPane.getChildren().clear(); // Clear existing cells
 
-        if (string == null || string.isEmpty()) {
-            System.out.println("String cannot be parsed, it is null or empty.");
-            return false;
+        for (int i = 0; i < gridSize; i++) {
+            for (int j = 0; j < gridSize; j++) {
+                Pane cell = new Pane();
+                cell.setStyle("-fx-border-color: black");
+                cell.setPrefSize(30, 30); // Adjust size as needed
+                gridPane.add(cell, j, i);
+            }
         }
-
-        try {
-            intValue = Integer.parseInt(string);
-            return true;
-        } catch (NumberFormatException e) {
-            System.out.println("Input String cannot be parsed to Integer.");
-        }
-        return false;
     }
 
     @Override
@@ -49,6 +45,26 @@ public class GridGame extends Application {
         Label welcomeText = new Label("Grid size: ");
         TextField textField = new TextField();
 
+
+        VBox navbar = new VBox(5);
+        navbar.getChildren().addAll(welcomeText, textField, button, label);
+        navbar.setAlignment(Pos.CENTER);
+        root.setTop(navbar);
+
+        //grid
+        GridPane gridPane = new GridPane();
+        gridPane.setAlignment(Pos.CENTER);
+        root.setCenter(gridPane);
+
+        //bottom
+        Button loadBtn = new Button("Load");
+        Button saveBtn = new Button("Save");
+        VBox bottom = new VBox(5);
+        bottom.getChildren().addAll(loadBtn, saveBtn);
+        bottom.setAlignment(Pos.CENTER);
+        root.setBottom(bottom);
+
+        //event
         EventHandler<ActionEvent> event = e -> {
             final String inputText = textField.getText();
 
@@ -58,29 +74,16 @@ public class GridGame extends Application {
 
             try {
                 assert inputText != null;
-                int intValue = Integer.parseInt(inputText);
+                int size = Integer.parseInt(inputText);
                 label.setText("You entered: " + inputText);
+                //grid
+                createBoard(gridPane, size);
+
             } catch (NumberFormatException err) {
                 label.setText("The input is not OK!");
             }
         };
         button.setOnAction(event);
-
-        VBox navbar = new VBox(5);
-        navbar.getChildren().addAll(welcomeText, textField, button, label);
-        navbar.setAlignment(Pos.CENTER);
-        root.setTop(navbar);
-
-        //grid
-//        Grid grid = new Grid(textField.getText());
-
-        //bottom
-        Button loadBtn = new Button("Load");
-        Button saveBtn = new Button("Save");
-        VBox bottom = new VBox(5);
-        bottom.getChildren().addAll(loadBtn, saveBtn);
-        bottom.setAlignment(Pos.CENTER);
-        root.setBottom(bottom);
 
         //final
         Scene sc = new Scene(root, 600, 700);
@@ -112,6 +115,7 @@ public class GridGame extends Application {
     }
 
 }
+
 
 // Course example:
 
