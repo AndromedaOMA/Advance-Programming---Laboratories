@@ -21,7 +21,7 @@ import javafx.scene.control.Button;
 public class GridGame extends Application {
 
     private void createBoard(GridPane gridPane, int gridSize) {
-        gridPane.getChildren().clear(); // Clear existing cells
+        gridPane.getChildren().clear();
 
         for (int i = 0; i < gridSize; i++) {
             for (int j = 0; j < gridSize; j++) {
@@ -89,25 +89,6 @@ public class GridGame extends Application {
         scene.setScene(sc);
         scene.show();
     }
-
-    //    @Override
-//    public void start(Stage stage) {
-//        String javaVersion = System.getProperty("java.version");
-//        String javafxVersion = System.getProperty("javafx.version");
-//        Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-//
-//        BorderPane pane = new BorderPane();
-//        pane.setCenter(l);
-//
-//        Button helloBtn = new Button("Click!");
-//        StackPane r = new StackPane();
-//        r.getChildren().add(helloBtn);
-//
-//        Scene scene = new Scene(r, 640, 480);
-//        stage.setTitle("GridGame");
-//        stage.setScene(scene);
-//        stage.show();
-//    }
 
     public static void main(String[] args) {
         launch(args);
