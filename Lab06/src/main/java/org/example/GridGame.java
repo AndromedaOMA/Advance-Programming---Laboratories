@@ -20,7 +20,6 @@ import javafx.scene.control.Button;
 
 public class GridGame extends Application {
 
-    // Method to create the game board
     private void createBoard(GridPane gridPane, int gridSize) {
         gridPane.getChildren().clear(); // Clear existing cells
 
@@ -28,7 +27,7 @@ public class GridGame extends Application {
             for (int j = 0; j < gridSize; j++) {
                 Pane cell = new Pane();
                 cell.setStyle("-fx-border-color: black");
-                cell.setPrefSize(30, 30); // Adjust size as needed
+                cell.setPrefSize(40, 40);
                 gridPane.add(cell, j, i);
             }
         }
