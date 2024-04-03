@@ -16,7 +16,7 @@ public class Repository {
             System.out.println("Directory not found or is not a directory.");
             return;
         }
-        System.out.println("The " + this.path + " directory contains the following files:");
+        System.out.println("The given directory contains the following files:");
         File[] files = directory.listFiles();
         if (files != null) {
             for (File file : files) {

@@ -11,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
@@ -19,19 +18,6 @@ import javafx.scene.control.Button;
 //command: mvn clean javafx:run
 
 public class GridGame extends Application {
-
-    private void createBoard(GridPane gridPane, int gridSize) {
-        gridPane.getChildren().clear();
-
-        for (int i = 0; i < gridSize; i++) {
-            for (int j = 0; j < gridSize; j++) {
-                Pane cell = new Pane();
-                cell.setStyle("-fx-border-color: black");
-                cell.setPrefSize(40, 40);
-                gridPane.add(cell, j, i);
-            }
-        }
-    }
 
     @Override
     public void start(Stage scene) {
@@ -76,7 +62,8 @@ public class GridGame extends Application {
                 int size = Integer.parseInt(inputText);
                 label.setText("You entered: " + inputText);
                 //grid
-                createBoard(gridPane, size);
+                GridGenerator grid = new GridGenerator();
+                grid.createBoard(gridPane, size);
 
             } catch (NumberFormatException err) {
                 label.setText("The input is not OK!");
