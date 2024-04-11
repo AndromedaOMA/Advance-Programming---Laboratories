@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="768.0" prefWidth="1024.0" spacing="20.0" xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.lab6.Controller">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+    <children>
+        <AnchorPane prefHeight="768.0" prefWidth="1024.0">
+            <children>
+                <ButtonBar layoutX="392.0" layoutY="674.0" prefHeight="40.0" prefWidth="200.0"
+                           style="-fx-background-color: grey;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                           AnchorPane.rightAnchor="0.0">
+                    <buttons>
+                        <AnchorPane prefWidth="1024.0">
+                            <children>
+                                <Button layoutX="392.0" layoutY="14.0" mnemonicParsing="false" onAction="#LoadClick"
+                                        prefHeight="24.0" prefWidth="85.0" text="Load" AnchorPane.bottomAnchor="5.0"/>
+                                <Button layoutX="494.0" layoutY="14.0" mnemonicParsing="false" onAction="#SaveClick"
+                                        prefHeight="24.0" prefWidth="85.0" text="Save" AnchorPane.bottomAnchor="5.0"
+                                        AnchorPane.leftAnchor="494.0"/>
+                            </children>
+                        </AnchorPane>
+                    </buttons>
+                </ButtonBar>
+                <Canvas fx:id="canvasS" height="633.0" layoutY="54.0" onMouseClicked="#MarkCircle" width="1024.0"
+                        AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                        AnchorPane.topAnchor="54.0"/>
+                <ButtonBar layoutX="1.0" layoutY="14.0" prefHeight="40.0" prefWidth="1024.0"
+                           style="-fx-background-color: grey;">
+                    <buttons>
+                        <AnchorPane prefHeight="40.0" prefWidth="1024.0">
+                            <children>
+                                <Spinner fx:id="spinnerW" layoutX="255.0" layoutY="8.0" AnchorPane.topAnchor="5.0"/>
+                                <Button layoutX="626.0" layoutY="8.0" mnemonicParsing="false" onAction="#CreateClick"
+                                        text="Create" AnchorPane.leftAnchor="630.0" AnchorPane.topAnchor="5.0"/>
+                                <Spinner fx:id="spinnerH" layoutX="443.0" layoutY="8.0" AnchorPane.topAnchor="5.0"/>
+                                <Label layoutX="164.0" layoutY="9.0" text="Grid size:" AnchorPane.topAnchor="5.0">
+                                    <font>
+                                        <Font size="18.0"/>
+                                    </font>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                    </buttons>
+                </ButtonBar>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>
