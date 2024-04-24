@@ -14,18 +14,15 @@ public class Main {
         Player player1 = new Player("Player 1", bag, game);
         Player player2 = new Player("Player 2", bag, game);
         Player player3 = new Player("Player 3", bag, game);
-        Player player4 = new Player("Player 4", bag, game);
 
         Thread thread1 = new Thread(player1);
         Thread thread2 = new Thread(player2);
         Thread thread3 = new Thread(player3);
-        Thread thread4 = new Thread(player4);
 
         List<Thread> threadList = new ArrayList<>();
         threadList.add(thread1);
         threadList.add(thread2);
         threadList.add(thread3);
-        threadList.add(thread4);
 
         for (Thread thread : threadList) {
             thread.start();
@@ -42,7 +39,6 @@ public class Main {
             System.out.println(player1.name + ": " + player1.playerTokenList);
             System.out.println(player2.name + ": " + player2.playerTokenList);
             System.out.println(player3.name + ": " + player3.playerTokenList);
-            System.out.println(player4.name + ": " + player4.playerTokenList);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -52,7 +48,6 @@ public class Main {
         topPlayers.add(player1);
         topPlayers.add(player2);
         topPlayers.add(player3);
-        topPlayers.add(player4);
 
 
         Comparator<Player> comparator = Comparator.comparingInt(p -> game.getMaxSequencerLength(p.playerTokenList));
@@ -62,7 +57,7 @@ public class Main {
         System.out.println();
         System.out.println();
 
-        int c = 4;
+        int c = 3;
         for (Player player : topPlayers) {
             System.out.println("Locul " + c + ": " + player.name);
             c--;

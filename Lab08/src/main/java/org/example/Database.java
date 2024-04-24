@@ -1,32 +1,37 @@
 package org.example;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Database {
-    private static final String URL = "jdbc:postgresql://localhost:5432/books";
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "password";
-    private static final Connection connection = null;
+    private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+    private static final String USER = "student";
+    private static final String PASSWORD = "STUDENT";
+    private static Connection connection = null;
 
     private Database() {
     }
 
     public static Connection getConnection() {
-        // TODO
-        return ;
-    }
-
-    private static void createConnection() {
-        try {
-            Connection = // TODO;
-            connection.setAutoCommit(false);
-        } catch (SQLException e) {
-            System.err.println(e);
+        if (connection == null) {
+            try {
+                connection = DriverManager.getConnection(URL, USER, PASSWORD);
+                connection.setAutoCommit(false);
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
         }
+        return connection;
     }
 
     public static void closeConnection() {
-        // TODO
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                System.err.println(e);
+            }
+        }
     }
 }

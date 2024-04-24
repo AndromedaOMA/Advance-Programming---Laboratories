@@ -3,24 +3,40 @@ package org.example;
 import java.sql.SQLException;
 
 public class Main {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         try {
-            var authors = new AuthorDAO();
-            authors.create("William Shakespeare");
-            var genres = new GenreDAO();
-            genres.create("Tragedy");
-            Database.getConnection().commit();
-            var books = new BookDAO();            //findByName
-            books.create(1597, "Romeo and Juliet", "William Shakespeare", "Tragedy");
-            books.create(1979, "The Hitchhiker's Guide to the Galaxy", "Douglas Adams", "Science fiction, Comedy, Adventure");
+            var authorDAO = new AuthorDAO();
+            authorDAO.create("William Shakespeare");
+            authorDAO.create("Peter Thiel");
+
+            authorDAO.listAuthors();
+
+            var genreDAO = new GenreDAO();
+            genreDAO.create("Tragedy");
+            genreDAO.create("Financial");
+
+            var bookDAO = new BooksDAO();
+            int shakespeareId = authorDAO.findByName("William Shakespeare");
+            int tragedyId = genreDAO.findByName("Tragedy");
+
+            int blakeId = authorDAO.findByName("Peter Thiel");
+            int financialId = genreDAO.findByName("Financial");
+
+//            bookDAO.create(1597, "Romeo and Juliet", shakespeareId, tragedyId);
+//            bookDAO.create(2014, "Zero to One", blakeId, financialId);
+
+            bookDAO.create("Romeo and Juliet", "eng", 300 , shakespeareId);
+            bookDAO.create("Zero to One", "ro", 250, blakeId);
+
+            bookDAO.listBooks();
+
             Database.getConnection().commit();
 
-            //TODO: print all the books in the database
 
-            Database.getConnection().close();
+            Database.closeConnection();
         } catch (SQLException e) {
             System.err.println(e);
-            Database.rollback();
+            Database.closeConnection();
         }
     }
 }
