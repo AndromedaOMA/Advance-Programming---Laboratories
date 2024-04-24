@@ -1,50 +1,73 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-class Player implements Runnable {
-    private String name;
-    private Game game;
-    private boolean running;
-    private List<Token> tiles = new ArrayList<>();
+import static java.lang.Thread.sleep;
 
-    public Player(String name) {
+public class Player implements Runnable {
+    public final String name;
+    public final Bag bag;
+    public final Game game;
+    private boolean isRunning = true;
+    public List<Token> playerTokenList;
+
+    public Player(String name, Bag bag, Game game) {
         this.name = name;
-    }
-
-    public void setGame(Game game) {
+        this.bag = bag;
         this.game = game;
-    }
-
-    public void stop() {
-        running = false;
+        playerTokenList = new ArrayList<>();
     }
 
     @Override
     public void run() {
-        running = true;
-        while (running) {
-            List<Token> pickedTiles = game.bag.extractTiles(1);
-            for (Token token : pickedTiles) {
-                tiles.add(token);
-                System.out.println(name + " picked tile: " + token);
-            }
+        gameLoop:
+        while (game.isRunning) {
+            synchronized (game) {
+                if (bag.isEmpty()) {
+                    game.getTimekeeper().stopRunningThreads();
+                    break;
+                }
 
-            if (tiles.size() >= 3) {
-                for (int i = 0; i <= tiles.size() - 3; i++) {
-                    Token tile1 = tiles.get(i);
-                    Token tile2 = tiles.get(i + 1);
-                    Token tile3 = tiles.get(i + 2);
-                    if (tile1.getNumber2() == tile2.getNumber1() && tile2.getNumber2() == tile3.getNumber1()) {
-                        System.out.println(name + " formed a sequence: " + tile1 + ", " + tile2 + ", " + tile3);
+                //alegem un token din lista
+                Token choosenToken = bag.getToken();
+                boolean isAdded = false;
+                for (int i = 0; i < playerTokenList.size(); ++i) {
+                    if (choosenToken.getFirstNumber() == playerTokenList.get(i).getLastNumber()) {
+                        isAdded = true;
+                        playerTokenList.add(i + 1, choosenToken);
+                        break;
+                    }
+                    if (choosenToken.getLastNumber() == playerTokenList.get(i).getFirstNumber()) {
+                        isAdded = true;
+                        playerTokenList.add(i, choosenToken);
+                        break;
                     }
                 }
-            }
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+
+                if (!isAdded) {
+                    playerTokenList.add(choosenToken);
+                }
+
+                if (game.getMaxSequencerLength(playerTokenList) == game.maxSequenceLength) {
+                    System.out.println("Jocul a fost castigat de catre " + name);
+                    game.isRunning = false;
+                    break;
+                    //game.getTimekeeper().stopRunningThreads();
+                }
+
+                System.out.println(name + " a ales tokenul " + choosenToken);
+                try {
+                    sleep(200);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                game.notifyAll();
+
+                try {
+                    game.wait();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException("Jocul s-a terminat, felicitari tuturor!");
+                }
             }
         }
     }

@@ -1,24 +1,32 @@
 package org.example;
 
-class Token {
-    private int number1;
-    private int number2;
+public class Token {
+    public int firstNumber;
+    public int lastNumber;
 
-    public Token(int number1, int number2) {
-        this.number1 = number1;
-        this.number2 = number2;
+    public Token(int firstNumber, int lastNumber) {
+        this.firstNumber = firstNumber;
+        this.lastNumber = lastNumber;
     }
 
-    public Object getNumber1() {
-        return this.number1;
+    public int getFirstNumber() {
+        return firstNumber;
     }
 
-    public Object getNumber2() {
-        return this.number2;
+    public void setFirstNumber(int firstNumber) {
+        this.firstNumber = firstNumber;
+    }
+
+    public int getLastNumber() {
+        return lastNumber;
+    }
+
+    public void setLastNumber(int lastNumber) {
+        this.lastNumber = lastNumber;
     }
 
     @Override
     public String toString() {
-        return "(" + number1 + ", " + number2 + ")";
+        return "(" + firstNumber + "," + lastNumber + ")";
     }
 }
