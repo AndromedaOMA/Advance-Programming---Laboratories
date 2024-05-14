@@ -1,27 +1,14 @@
 package org.example;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
-public class AuthorDAO {
-//    public void create(String name) throws SQLException {
-//        Connection con = Database.getConnection();
-//        try (PreparedStatement pstmt = con.prepareStatement("INSERT INTO authors (name) VALUES (?)")) {
-//            pstmt.setString(1, name);
-//            pstmt.executeUpdate();
-//        }
-//    }
+class AuthorDAO {
     public void create(String name) throws SQLException {
-
         if (findByName(name) != null) {
             System.out.println("Author '" + name + "' already exists.");
-            return;
         } else {
-            Connection con = Database.getConnection();
-            try (PreparedStatement pstmt = con.prepareStatement("INSERT INTO authors (name) VALUES (?)")) {
+            try (Connection con = Database.getConnection();
+                 PreparedStatement pstmt = con.prepareStatement("INSERT INTO authors (name) VALUES (?)")) {
                 pstmt.setString(1, name);
                 pstmt.executeUpdate();
             }
@@ -29,28 +16,12 @@ public class AuthorDAO {
     }
 
     public Integer findByName(String name) throws SQLException {
-        Connection con = Database.getConnection();
-        try (Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT author_id FROM authors WHERE name='" + name + "'")) {
-            return rs.next() ? rs.getInt(1) : null;
-        }
-    }
-
-    public String findById(int id) throws SQLException {
-        Connection con = Database.getConnection();
-        try (Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT name FROM authors WHERE author_id=" + id)) {
-            return rs.next() ? rs.getString(1) : null;
-        }
-    }
-
-    public void addAuthor(String name) {
         try (Connection con = Database.getConnection();
-             PreparedStatement pstmt = con.prepareStatement("INSERT INTO authors (name) VALUES (?)")) {
+             PreparedStatement pstmt = con.prepareStatement("SELECT author_id FROM authors WHERE name=?")) {
             pstmt.setString(1, name);
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            try (ResultSet rs = pstmt.executeQuery()) {
+                return rs.next() ? rs.getInt(1) : null;
+            }
         }
     }
 
@@ -63,7 +34,8 @@ public class AuthorDAO {
                         ", Name: " + resultSet.getString("NAME"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Error listing authors: " + e.getMessage());
         }
     }
 }
+

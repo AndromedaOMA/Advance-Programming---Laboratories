@@ -1,36 +1,35 @@
 package org.example;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
-public class BooksDAO {
-    //    public void create(int publicationYear, String title, int authorId, int genreId) throws SQLException {
-//        Connection con = Database.getConnection();
-//        try (PreparedStatement pstmt = con.prepareStatement(
-//                "INSERT INTO books (publication_year, title, author_id, genre_id) VALUES (?, ?, ?, ?)")) {
-//            pstmt.setInt(1, publicationYear);
-//            pstmt.setString(2, title);
-//            pstmt.setInt(3, authorId);
-//            pstmt.setInt(4, genreId);
-//            pstmt.executeUpdate();
-//        }
-//    }
+class BooksDAO {
     public void create(String title, String language, int numPage, int authorId) throws SQLException {
-        Connection con = Database.getConnection();
-        try (PreparedStatement pstmt = con.prepareStatement(
-                "INSERT INTO books (title, language, num_pages, author_id) VALUES (?, ?, ?, ?)")) {
-            pstmt.setString(1, title);
-            pstmt.setString(2, language);
-            pstmt.setInt(3, numPage);
-            pstmt.setInt(4, authorId);
-            pstmt.executeUpdate();
+        if (findByTitle(title) != null) {
+            System.out.println("The book '" + title + "' already exists.");
+        } else {
+            try (Connection con = Database.getConnection();
+                 PreparedStatement pstmt = con.prepareStatement(
+                         "INSERT INTO books (title, language, num_pages, author_id) VALUES (?, ?, ?, ?)")) {
+                pstmt.setString(1, title);
+                pstmt.setString(2, language);
+                pstmt.setInt(3, numPage);
+                pstmt.setInt(4, authorId);
+                pstmt.executeUpdate();
+            }
         }
     }
 
-    public void listBooks() throws SQLException {
+    public Integer findByTitle(String title) throws SQLException {
+        try (Connection con = Database.getConnection();
+             PreparedStatement pstmt = con.prepareStatement("SELECT book_id FROM books WHERE title=?")) {
+            pstmt.setString(1, title);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                return rs.next() ? rs.getInt(1) : null;
+            }
+        }
+    }
+
+    public void listBooks() {
         try (Connection con = Database.getConnection();
              Statement stmt = con.createStatement();
              ResultSet resultSet = stmt.executeQuery("SELECT * FROM books")) {
@@ -42,7 +41,8 @@ public class BooksDAO {
                         ", Author ID: " + resultSet.getInt("author_id"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Error listing books: " + e.getMessage());
         }
     }
 }
+
