@@ -7,11 +7,24 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class AuthorDAO {
+//    public void create(String name) throws SQLException {
+//        Connection con = Database.getConnection();
+//        try (PreparedStatement pstmt = con.prepareStatement("INSERT INTO authors (name) VALUES (?)")) {
+//            pstmt.setString(1, name);
+//            pstmt.executeUpdate();
+//        }
+//    }
     public void create(String name) throws SQLException {
-        Connection con = Database.getConnection();
-        try (PreparedStatement pstmt = con.prepareStatement("INSERT INTO authors (name) VALUES (?)")) {
-            pstmt.setString(1, name);
-            pstmt.executeUpdate();
+
+        if (findByName(name) != null) {
+            System.out.println("Author '" + name + "' already exists.");
+            return;
+        } else {
+            Connection con = Database.getConnection();
+            try (PreparedStatement pstmt = con.prepareStatement("INSERT INTO authors (name) VALUES (?)")) {
+                pstmt.setString(1, name);
+                pstmt.executeUpdate();
+            }
         }
     }
 

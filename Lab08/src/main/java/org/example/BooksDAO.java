@@ -21,7 +21,7 @@ public class BooksDAO {
     public void create(String title, String language, int numPage, int authorId) throws SQLException {
         Connection con = Database.getConnection();
         try (PreparedStatement pstmt = con.prepareStatement(
-                "INSERT INTO books (title, language, num_pages, author_id) VALUES (?, ?, ?, ?, ?)")) {
+                "INSERT INTO books (title, language, num_pages, author_id) VALUES (?, ?, ?, ?)")) {
             pstmt.setString(1, title);
             pstmt.setString(2, language);
             pstmt.setInt(3, numPage);
@@ -38,9 +38,8 @@ public class BooksDAO {
                 System.out.println("Book ID: " + resultSet.getInt("BOOK_ID") +
                         ", Title: " + resultSet.getString("TITLE") +
                         ", Language: " + resultSet.getString("LANGUAGE") +
-                        ", Publication Date: " + resultSet.getInt("PUBLICATION_DATE") +
-                        ", Author ID: " + resultSet.getInt("author_id") +
-                        ", Genre ID: " + resultSet.getInt("NUM_PAGES"));
+                        ", No. Pages: " + resultSet.getInt("NUM_PAGES") +
+                        ", Author ID: " + resultSet.getInt("author_id"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

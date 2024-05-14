@@ -32,7 +32,6 @@ public class Main {
 
             Database.getConnection().commit();
 
-
             Database.closeConnection();
         } catch (SQLException e) {
             System.err.println(e);
