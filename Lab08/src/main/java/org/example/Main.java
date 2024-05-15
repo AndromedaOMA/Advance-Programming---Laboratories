@@ -15,6 +15,11 @@ public class Main {
             int shakespeareId = authorDAO.findByName("William Shakespeare");
             int blakeId = authorDAO.findByName("Peter Thiel");
 
+            var genreDAO = new GenreDAO();
+            genreDAO.create("drama");
+            genreDAO.create("financial");
+            genreDAO.listGenres();
+
             bookDAO.create("Romeo and Juliet", "eng", 300 , shakespeareId);
             bookDAO.create("Zero to One", "ro", 250, blakeId);
             bookDAO.listBooks();

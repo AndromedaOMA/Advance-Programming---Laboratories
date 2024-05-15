@@ -8,7 +8,7 @@ public class GenreDAO {
             System.out.println("Genre '" + name + "' already exists.");
         } else {
             try (Connection con = Database.getConnection();
-                 PreparedStatement pstmt = con.prepareStatement("INSERT INTO genres (name) VALUES (?)")) {
+                 PreparedStatement pstmt = con.prepareStatement("INSERT INTO genre_final (name) VALUES (?)")) {
                 pstmt.setString(1, name);
                 pstmt.executeUpdate();
             }
@@ -17,7 +17,7 @@ public class GenreDAO {
 
     public Integer findByName(String name) throws SQLException {
         try (Connection con = Database.getConnection();
-             PreparedStatement pstmt = con.prepareStatement("SELECT genre_id FROM genres WHERE name=?")) {
+             PreparedStatement pstmt = con.prepareStatement("SELECT genre_id FROM genre_final WHERE name=?")) {
             pstmt.setString(1, name);
             try (ResultSet rs = pstmt.executeQuery()) {
                 return rs.next() ? rs.getInt(1) : null;
@@ -28,7 +28,7 @@ public class GenreDAO {
     public void listGenres() {
         try (Connection con = Database.getConnection();
              Statement stmt = con.createStatement();
-             ResultSet resultSet = stmt.executeQuery("SELECT * FROM genres")) {
+             ResultSet resultSet = stmt.executeQuery("SELECT * FROM genre_final")) {
             while (resultSet.next()) {
                 System.out.println("Genre ID: " + resultSet.getInt("GENRE_ID") +
                         ", Name: " + resultSet.getString("NAME"));
