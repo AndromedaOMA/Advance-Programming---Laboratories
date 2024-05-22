@@ -20,15 +20,15 @@ public class ClientThread implements Runnable {
         try (BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
              PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
 
+            CommandHandler handler = new CommandHandler(server);
             String request;
             while ((request = in.readLine()) != null) {
                 System.out.println("Received: " + request);
-                if ("stop".equalsIgnoreCase(request)) {
-                    out.println("Server stopped");
+                String response = handler.handleCommand(request);
+                out.println(response);
+                if ("Server stopped".equalsIgnoreCase(response)) {
                     server.stop();
                     break;
-                } else {
-                    out.println("Server received the request: " + request);
                 }
             }
         } catch (IOException e) {

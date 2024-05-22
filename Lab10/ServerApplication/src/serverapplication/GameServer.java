@@ -5,15 +5,19 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class GameServer {
     private final int port;
     private boolean running;
     private final ExecutorService pool;
+    private final ConcurrentHashMap<Integer, GameSession> gameSessions;
+    private int gameIdCounter = 1;
 
     public GameServer(int port) {
         this.port = port;
         this.pool = Executors.newCachedThreadPool();
+        this.gameSessions = new ConcurrentHashMap<>();
     }
 
     public void start() {
@@ -35,6 +39,17 @@ public class GameServer {
         running = false;
         pool.shutdown();
         System.out.println("Game server stopped");
+    }
+
+    public int createGame() {
+        int gameId = gameIdCounter++;
+        GameSession session = new GameSession(gameId);
+        gameSessions.put(gameId, session);
+        return gameId;
+    }
+
+    public GameSession getGameSession(int gameId) {
+        return gameSessions.get(gameId);
     }
 
     public static void main(String[] args) {
